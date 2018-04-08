@@ -96,6 +96,13 @@ int createModelsInWorld(World & world)
 	glm::vec3 scaleVector(1.0f, 1.0f, 1.0f);
 	glm::vec3 rotationVector(0.0f, 0.0f, 0.0f);
 
+	// Load textures
+	int imageHeight;
+	int imageWidth;
+	stbi_uc* stbiImageLoaded = stbi_load("../data/front.png", &imageHeight, &imageWidth, nullptr, 4);
+	
+	stbi_image_free(stbiImageLoaded);
+
 	// create the triangles in the scene
 	for (int x = -3; x <= 3; x += 3) {
 		for (int z = 0; z >= -6; z -= 3) {
