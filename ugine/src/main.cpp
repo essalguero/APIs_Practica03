@@ -2,6 +2,11 @@
 #pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 #endif
 
+#ifndef STB_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_IMPLEMENTATION
+#endif // !STB_IMAGE_IMPLEMENTATION
+
+
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -24,6 +29,8 @@
 #include "World.h"
 
 #include "State.h"
+#include "../lib/stb-image/stb_image.h"
+
 
 #define FULLSCREEN false
 
