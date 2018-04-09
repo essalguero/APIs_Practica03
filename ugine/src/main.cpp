@@ -2,10 +2,6 @@
 #pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 #endif
 
-#ifndef STB_IMAGE_IMPLEMENTATION
-#define STB_IMAGE_IMPLEMENTATION
-#endif // !STB_IMAGE_IMPLEMENTATION
-
 
 #include <fstream>
 #include <iostream>
@@ -27,6 +23,7 @@
 #include "Model.h"
 #include "Camera.h"
 #include "World.h"
+#include "Texture.h"
 
 #include "State.h"
 #include "../lib/stb-image/stb_image.h"
@@ -102,6 +99,9 @@ int createModelsInWorld(World & world)
 	stbi_uc* stbiImageLoaded = stbi_load("../data/front.png", &imageHeight, &imageWidth, nullptr, 4);
 	
 	stbi_image_free(stbiImageLoaded);
+
+
+
 
 	// create the triangles in the scene
 	for (int x = -3; x <= 3; x += 3) {

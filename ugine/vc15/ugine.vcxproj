@@ -140,6 +140,7 @@
     <ClCompile Include="..\src\Model.cpp" />
     <ClCompile Include="..\src\Shader.cpp" />
     <ClCompile Include="..\src\State.cpp" />
+    <ClCompile Include="..\src\Texture.cpp" />
     <ClCompile Include="..\src\Vertex.cpp" />
     <ClCompile Include="..\src\World.cpp" />
   </ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="..\src\Model.h" />
     <ClInclude Include="..\src\Shader.h" />
     <ClInclude Include="..\src\State.h" />
+    <ClInclude Include="..\src\Texture.h" />
     <ClInclude Include="..\src\Vertex.h" />
     <ClInclude Include="..\src\World.h" />
   </ItemGroup>
