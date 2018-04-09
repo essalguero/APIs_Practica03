@@ -26,7 +26,6 @@
 #include "Texture.h"
 
 #include "State.h"
-#include "../lib/stb-image/stb_image.h"
 
 
 #define FULLSCREEN false
@@ -94,11 +93,7 @@ int createModelsInWorld(World & world)
 	glm::vec3 rotationVector(0.0f, 0.0f, 0.0f);
 
 	// Load textures
-	int imageHeight;
-	int imageWidth;
-	stbi_uc* stbiImageLoaded = stbi_load("../data/front.png", &imageHeight, &imageWidth, nullptr, 4);
-	
-	stbi_image_free(stbiImageLoaded);
+
 
 
 

@@ -6,6 +6,8 @@
 
 #include "common.h"
 
+#include "../lib/glew/glew.h"
+
 class Texture
 {
 public:
@@ -17,7 +19,7 @@ public:
 	void							bind() const;
 
 protected:
-	Texture() {};
+	Texture();
 	~Texture() {};
 	static void destroy(Texture* p) {
 		delete p;
