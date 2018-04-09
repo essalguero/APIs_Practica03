@@ -65,18 +65,40 @@ int createModelsInWorld(World & world)
 	vector<uint16_t> indices;
 
 
-	Vertex v1{ glm::vec3(0.0f, 1.0f, 0.0f) };
-	Vertex v2{ glm::vec3(-1.0f, -1.0f, 0.0f) };
-	Vertex v3{ glm::vec3(1.0f, -1.0f, 0.0f) };
+	/*Vertex v1{ glm::vec3(0.0f, 0.5f, 0.0f) };
+	Vertex v2{ glm::vec3(-0.5f, -0.5f, 0.0f) };
+	Vertex v3{ glm::vec3(0.5f, -0.5f, 0.0f) };*/
+
+
+	Vertex v1{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(0, 1) };
+	Vertex v2{ glm::vec3(0.5f, 0.5f, -0.5f),  glm::vec2(1, 1) };
+	Vertex v3{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 0) };
+	Vertex v4{ glm::vec3(0.5f, -0.5f, -0.5f), glm::vec2(1, 0) };
+
 
 	vertices.push_back(v1);
 	vertices.push_back(v2);
 	vertices.push_back(v3);
+	vertices.push_back(v4);
 
 	indices.push_back(0);
 	indices.push_back(1);
 	indices.push_back(2);
+	indices.push_back(2);
+	indices.push_back(3);
+	indices.push_back(1);
 
+
+
+	/*Vertex v5{ glm::vec3(0.5f, 0.5f, 0.5f) };
+	Vertex v6{ glm::vec3(0.5f, -0.5f, 0.5f) };
+
+	vertices.push_back(v2);
+	vertices.push_back(v4);
+	vertices.push_back(v5);
+	vertices.push_back(v5);
+	vertices.push_back(v6);
+	vertices.push_back(v4);*/
 
 	shared_ptr<Buffer> bufferDatos = Buffer::create(vertices, indices);
 	if (strcmp(bufferDatos->getError(), "") != 0)
@@ -99,18 +121,18 @@ int createModelsInWorld(World & world)
 
 
 	// create the triangles in the scene
-	for (int x = -3; x <= 3; x += 3) {
-		for (int z = 0; z >= -6; z -= 3) {
+	//for (int x = -3; x <= 3; x += 3) {
+	//	for (int z = 0; z >= -6; z -= 3) {
 
 			shared_ptr<Model> triangle = make_shared<Model>(triangleMesh);
 			triangle->setScale(scaleVector);
 			triangle->setRotation(rotationVector);
-			triangle->setPosition(glm::vec3(static_cast<float>(x), 0.0f, static_cast<float>(z)));
+			triangle->setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 
 			//Add them to the world object
 			world.addEntity(triangle);
-		}
-	}
+	//	}
+	//}
 
 	return 1;
 }
@@ -153,8 +175,11 @@ int main(int, char**) {
 
 	// Generate a camera and store it in the world
 	shared_ptr<Camera> camera = make_shared<Camera>();
-	camera->setPosition(glm::vec3(0.0f, 0.0f, 6.0f));
+	camera->setPosition(glm::vec3(0.0f, 1.0f, 3.0f));
 	camera->setClearColor(glm::vec3(0, 0, 0));
+	glm::vec3 cameraRotation = camera->getRotation();
+	cameraRotation.x = -20.0;
+	camera->setRotation(cameraRotation);
 	world.addEntity(camera);
 
 	// Generate the objects in the world

@@ -22,7 +22,7 @@ std::shared_ptr<Texture> Texture::load(const char* filename)
 	std::shared_ptr<Texture> texture(new Texture(), destroy);
 	//if (strcmp(p->error, "") != 0) {
 	//texture = nullptr;
-	
+
 	stbi_image_free(stbiImageLoaded);
 
 	return texture;
@@ -31,6 +31,15 @@ std::shared_ptr<Texture> Texture::load(const char* filename)
 Texture::Texture()
 {
 	glGenTextures(1, &textureId);
+
+	bind();
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
+		imageWidth, imageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	
 }
 
 uint32_t Texture::getId() const
@@ -45,5 +54,5 @@ const glm::ivec2& Texture::getSize() const
 
 void Texture::bind() const
 {
-
+	glBindTexture(GL_TEXTURE_2D, textureId);
 }
