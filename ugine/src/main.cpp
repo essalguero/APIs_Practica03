@@ -69,36 +69,64 @@ int createModelsInWorld(World & world)
 	Vertex v2{ glm::vec3(-0.5f, -0.5f, 0.0f) };
 	Vertex v3{ glm::vec3(0.5f, -0.5f, 0.0f) };*/
 
+	Vertex v0{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(0, 1) };
+	Vertex v1{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 0) };
+	Vertex v2{ glm::vec3(0.5f, -0.5f, -0.5f), glm::vec2(1, 0) };
+	Vertex v3{ glm::vec3(0.5f, 0.5f, -0.5f), glm::vec2(1, 1) };
 
-	Vertex v1{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(0, 1) };
-	Vertex v2{ glm::vec3(0.5f, 0.5f, -0.5f),  glm::vec2(1, 1) };
-	Vertex v3{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 0) };
-	Vertex v4{ glm::vec3(0.5f, -0.5f, -0.5f), glm::vec2(1, 0) };
-
-
+	vertices.push_back(v0);
 	vertices.push_back(v1);
 	vertices.push_back(v2);
 	vertices.push_back(v3);
-	vertices.push_back(v4);
 
 	indices.push_back(0);
 	indices.push_back(1);
 	indices.push_back(2);
 	indices.push_back(2);
 	indices.push_back(3);
-	indices.push_back(1);
+	indices.push_back(0);
 
 
+	Vertex v4{ glm::vec3(0.5f, 0.5f, -0.5f), glm::vec2(0, 1) };
+	Vertex v5{ glm::vec3(0.5f, -0.5f, -0.5f),  glm::vec2(1, 1) };
+	Vertex v6{ glm::vec3(0.5f, -0.5f, 0.5f), glm::vec2(0, 0) };
+	Vertex v7{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(1, 0) };
 
-	/*Vertex v5{ glm::vec3(0.5f, 0.5f, 0.5f) };
-	Vertex v6{ glm::vec3(0.5f, -0.5f, 0.5f) };
 
-	vertices.push_back(v2);
-	vertices.push_back(v4);
-	vertices.push_back(v5);
-	vertices.push_back(v5);
-	vertices.push_back(v6);
-	vertices.push_back(v4);*/
+	indices.push_back(4);
+	indices.push_back(5);
+	indices.push_back(6);
+	indices.push_back(6);
+	indices.push_back(7);
+	indices.push_back(4);
+
+
+	Vertex v8{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
+	Vertex v9{ glm::vec3(0.5f, -0.5f, 0.5f),  glm::vec2(1, 1) };
+	Vertex v10{ glm::vec3(-0.5f, -0.5f, 0.5f), glm::vec2(0, 0) };
+	Vertex v11{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(1, 0) };
+
+
+	indices.push_back(8);
+	indices.push_back(9);
+	indices.push_back(10);
+	indices.push_back(10);
+	indices.push_back(11);
+	indices.push_back(8);
+
+
+	Vertex v12{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
+	Vertex v13{ glm::vec3(-0.5f, -0.5f, 0.5f),  glm::vec2(1, 1) };
+	Vertex v14{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 0) };
+	Vertex v15{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(1, 0) };
+
+
+	indices.push_back(12);
+	indices.push_back(13);
+	indices.push_back(14);
+	indices.push_back(14);
+	indices.push_back(15);
+	indices.push_back(12);
 
 	shared_ptr<Buffer> bufferDatos = Buffer::create(vertices, indices);
 	if (strcmp(bufferDatos->getError(), "") != 0)
