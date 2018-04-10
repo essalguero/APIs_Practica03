@@ -30,7 +30,7 @@
 
 #define FULLSCREEN false
 
-const float ROTATION_SPEED = 32.0f;
+const float ROTATION_SPEED = 64.0f;
 const float ROTATION_SPEED_RADS = glm::radians(ROTATION_SPEED);
 
 std::string readString(const char* filename) {
@@ -92,6 +92,11 @@ int createModelsInWorld(World & world)
 	Vertex v6{ glm::vec3(0.5f, -0.5f, 0.5f), glm::vec2(0, 0) };
 	Vertex v7{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(1, 0) };
 
+	vertices.push_back(v4);
+	vertices.push_back(v5);
+	vertices.push_back(v6);
+	vertices.push_back(v7);
+
 
 	indices.push_back(4);
 	indices.push_back(5);
@@ -106,6 +111,10 @@ int createModelsInWorld(World & world)
 	Vertex v10{ glm::vec3(-0.5f, -0.5f, 0.5f), glm::vec2(0, 0) };
 	Vertex v11{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(1, 0) };
 
+	vertices.push_back(v8);
+	vertices.push_back(v9);
+	vertices.push_back(v10);
+	vertices.push_back(v11);
 
 	indices.push_back(8);
 	indices.push_back(9);
@@ -120,6 +129,10 @@ int createModelsInWorld(World & world)
 	Vertex v14{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 0) };
 	Vertex v15{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(1, 0) };
 
+	vertices.push_back(v12);
+	vertices.push_back(v13);
+	vertices.push_back(v14);
+	vertices.push_back(v15);
 
 	indices.push_back(12);
 	indices.push_back(13);
@@ -128,16 +141,26 @@ int createModelsInWorld(World & world)
 	indices.push_back(15);
 	indices.push_back(12);
 
-	shared_ptr<Buffer> bufferDatos = Buffer::create(vertices, indices);
-	if (strcmp(bufferDatos->getError(), "") != 0)
+	//Insert indexes for the top and bottom sides of the cube
+
+
+	shared_ptr<Buffer> bufferDatosLaterales = Buffer::create(vertices, indices);
+	if (strcmp(bufferDatosLaterales->getError(), "") != 0)
 	{
-		cout << bufferDatos->getError() << endl;
+		cout << bufferDatosLaterales->getError() << endl;
 		return 0;
 	}
 
-	shared_ptr<Mesh> triangleMesh = make_shared<Mesh>();
-	Model triangleModel(triangleMesh);
-	triangleMesh->addBuffer(bufferDatos);
+	shared_ptr<Buffer> bufferDatosTapas = Buffer::create(, );
+	if (strcmp(bufferDatosLaterales->getError(), "") != 0)
+	{
+		cout << bufferDatosLaterales->getError() << endl;
+		return 0;
+	}
+
+	shared_ptr<Mesh> cubeMesh = make_shared<Mesh>();
+	Model cubeModel(cubeMesh);
+	cubeMesh->addBuffer(bufferDatosLaterales);
 
 	glm::vec3 scaleVector(1.0f, 1.0f, 1.0f);
 	glm::vec3 rotationVector(0.0f, 0.0f, 0.0f);
@@ -152,13 +175,13 @@ int createModelsInWorld(World & world)
 	//for (int x = -3; x <= 3; x += 3) {
 	//	for (int z = 0; z >= -6; z -= 3) {
 
-			shared_ptr<Model> triangle = make_shared<Model>(triangleMesh);
-			triangle->setScale(scaleVector);
-			triangle->setRotation(rotationVector);
-			triangle->setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+			shared_ptr<Model> cube = make_shared<Model>(cubeMesh);
+			cube->setScale(scaleVector);
+			cube->setRotation(rotationVector);
+			cube->setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 
 			//Add them to the world object
-			world.addEntity(triangle);
+			world.addEntity(cube);
 	//	}
 	//}
 
@@ -206,7 +229,7 @@ int main(int, char**) {
 	camera->setPosition(glm::vec3(0.0f, 1.0f, 3.0f));
 	camera->setClearColor(glm::vec3(0, 0, 0));
 	glm::vec3 cameraRotation = camera->getRotation();
-	cameraRotation.x = -20.0;
+	cameraRotation.x = glm::radians(-20.0f);
 	camera->setRotation(cameraRotation);
 	world.addEntity(camera);
 

@@ -12,7 +12,10 @@ void Camera::prepare()
 	
 	glm::mat4 viewMatrix;
 
-	viewMatrix[3] = glm::vec4(-position, 1.0f);
+	//viewMatrix[3] = glm::vec4(-position, 1.0f);
+	viewMatrix = glm::translate(
+		glm::rotate(glm::mat4(), glm::angle(glm::quat(rotation)), -glm::axis(glm::quat(rotation))), 
+		-position);
 
 	State::viewMatrix = viewMatrix;
 
