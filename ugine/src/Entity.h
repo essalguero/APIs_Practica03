@@ -6,14 +6,14 @@ class Entity
 {
 public:
 
-	Entity();
+	Entity() : scale(glm::vec3(1, 1, 1)) {}
 	
 	inline const glm::vec3& getPosition() const;
 	void setPosition(const glm::vec3& pos);
 	const glm::vec3& getRotation() const;
 	const void setRotation(const glm::vec3& rot); // puede ser quat
 	const glm::quat& getRotationQuat() const;
-	const void setRotation(const glm::quat& rot); // hecho tambien con quat
+	const void setRotationQuat(const glm::quat& rot); // hecho tambien con quat
 	inline const glm::vec3& getScale() const;
 	void setScale(const glm::vec3& scale);
 	void move(const glm::vec3& vec); // Ver en las diapositivas
@@ -26,5 +26,6 @@ public:
 protected:
 	glm::vec3 position;
 	glm::vec3 rotation;
+	glm::quat rotationQuat;
 	glm::vec3 scale;
 };

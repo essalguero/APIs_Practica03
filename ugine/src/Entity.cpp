@@ -2,10 +2,6 @@
 
 #include "iostream"
 
-Entity::Entity()
-{
-
-}
 
 const glm::vec3& Entity::getPosition() const
 {
@@ -25,16 +21,18 @@ const glm::vec3& Entity::getRotation() const
 const void Entity::setRotation(const glm::vec3& rot) 
 {
 	rotation = rot;
+	rotationQuat = glm::quat(rot);
 }
 
 
 const glm::quat& Entity::getRotationQuat() const 
 {
-	return glm::quat(rotation);
+	return rotationQuat;
 }
 
-const void Entity::setRotation(const glm::quat& rot) 
+const void Entity::setRotationQuat(const glm::quat& rot)
 {
+	rotationQuat = rot;
 	rotation = glm::eulerAngles(rot);
 }
 

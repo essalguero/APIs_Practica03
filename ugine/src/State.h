@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include "common.h"
 #include "Shader.h"
 
@@ -13,6 +11,8 @@ public:
 	static glm::mat4 				viewMatrix;
 	static glm::mat4 				modelMatrix;
 
+protected:
 	State() {};
+	~State() {};
 
 };
