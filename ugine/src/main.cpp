@@ -31,7 +31,7 @@
 #define FULLSCREEN false
 
 const float ROTATION_SPEED = 64.0f;
-const float ROTATION_SPEED_RADS = glm::radians(ROTATION_SPEED);
+//const float ROTATION_SPEED_RADS = glm::radians(ROTATION_SPEED);
 
 std::string readString(const char* filename) {
 	std::ifstream f(filename, std::ios_base::binary);
@@ -272,7 +272,7 @@ int main(int, char**) {
 	camera->setPosition(glm::vec3(0.0f, 1.0f, 3.0f));
 	camera->setClearColor(glm::vec3(0, 0, 0));
 	glm::vec3 cameraRotation = camera->getRotation();
-	cameraRotation.x = glm::radians(-20.0f);
+	cameraRotation.x = -20.0f;
 	camera->setRotation(cameraRotation);
 	world.addEntity(camera);
 
@@ -284,7 +284,7 @@ int main(int, char**) {
 	}
 
 	// create a cuaternion with the  
-	glm::quat rotationQuat = angleAxis(ROTATION_SPEED_RADS,
+	glm::quat rotationQuat = angleAxis(ROTATION_SPEED,
 		glm::vec3(0.0f, 1.0f, 0.0f));
 
 	// Bucle principal
@@ -326,7 +326,7 @@ int main(int, char**) {
 				glm::quat rotationQuaternion = currentModel->getRotationQuat();
 
 				// Calculate the new quaternion
-				currentModel->setRotation(glm::slerp(rotationQuaternion, 
+				currentModel->setRotationQuat(glm::slerp(rotationQuaternion, 
 					rotationQuat * rotationQuaternion, deltaTime));
 				
 			}
