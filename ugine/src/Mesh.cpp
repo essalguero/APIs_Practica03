@@ -44,6 +44,17 @@ std::shared_ptr<Buffer>& Mesh::getBuffer(size_t index)
 	return pointer;
 }
 
+const Material& Mesh::getMaterial(size_t index) const
+{
+	return materialsVector.at(index);
+}
+
+Material& Mesh::getMaterial(size_t index)
+{
+	return materialsVector.at(index);
+}
+
+
 void Mesh::draw()
 {
 	for (int i = 0; i < buffersVector.size(); ++i)
