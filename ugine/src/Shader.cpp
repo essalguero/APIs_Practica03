@@ -81,7 +81,7 @@ Shader::Shader(string const & vertexShaderSource, const string & fragmentShaderS
 
 
 	vposLoc = glGetAttribLocation(id, "vpos");
-	vTextureLoc = glGetAttribLocation(id, "vTextureLoc");
+	vTextureLoc = glGetAttribLocation(id, "vTexture");
 	mvpMatrix = glGetUniformLocation(id, "mvpMatrix");
 
 }
