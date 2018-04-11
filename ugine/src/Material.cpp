@@ -41,6 +41,15 @@ void Material::setTexture(const std::shared_ptr<Texture>& tex)
 
 void Material::prepare()
 { 
-	if (true)
-		true;
+	std::shared_ptr<Shader> shader = getShader();
+
+	shader->use();
+
+	glm::mat4 mvpMatrix = State::projectionMatrix * State::viewMatrix * State::modelMatrix;
+
+	shader->setMatrix(shader->getLocation("mvpMatrix"), mvpMatrix);
+	// Set other variables
+
+	if (materialTexture)
+		materialTexture->bind();
 }
