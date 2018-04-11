@@ -81,6 +81,7 @@ Shader::Shader(string const & vertexShaderSource, const string & fragmentShaderS
 
 
 	vposLoc = glGetAttribLocation(id, "vpos");
+	vTextureLoc = glGetAttribLocation(id, "vTextureLoc");
 	mvpMatrix = glGetUniformLocation(id, "mvpMatrix");
 
 }
@@ -89,7 +90,14 @@ Shader::Shader(string const & vertexShaderSource, const string & fragmentShaderS
 void Shader::setupAttribs() const {
 	if (vposLoc != -1) {
 		glEnableVertexAttribArray(vposLoc);
-		glVertexAttribPointer(vposLoc, 3, GL_FLOAT, false, sizeof(Vertex), 0);
+		glVertexAttribPointer(vposLoc, 3, GL_FLOAT, false, sizeof(Vertex), 
+			reinterpret_cast<void*>(offsetof(Vertex, position)));
+	}
+
+	if (vTextureLoc != -1) {
+		glEnableVertexAttribArray(vTextureLoc);
+		glVertexAttribPointer(vTextureLoc, 2, GL_FLOAT, false, sizeof(Vertex),
+			reinterpret_cast<void*>(offsetof(Vertex, texture)));
 	}
 }
 

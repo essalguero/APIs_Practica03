@@ -1,7 +1,7 @@
 //varying vec3 fcolor;
 
 attribute vec3 vpos;
-
+attribute vec2 vTextureLoc;
 uniform mat4 mvpMatrix;
 
 void main() {

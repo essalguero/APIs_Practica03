@@ -52,6 +52,8 @@ private:
 
 	int vposLoc;
 
+	int vTextureLoc;
+
 	int mvpMatrix;
 };
 
