@@ -186,17 +186,21 @@ int createModelsInWorld(World & world)
 	}
 
 	shared_ptr<Buffer> bufferDatosTapas = Buffer::create(vertices2, indices2);
-	if (strcmp(bufferDatosLaterales->getError(), "") != 0)
+	if (strcmp(bufferDatosTapas->getError(), "") != 0)
 	{
-		cout << bufferDatosLaterales->getError() << endl;
+		cout << bufferDatosTapas->getError() << endl;
 		return 0;
 	}
 
-	Material material = Material::Material(Texture::load("../data/front.png"), nullptr);
+	Material materialFront = Material::Material(Texture::load("../data/front.png"), nullptr);
 
 	shared_ptr<Mesh> cubeMesh = make_shared<Mesh>();
 	Model cubeModel(cubeMesh);
-	cubeMesh->addBuffer(bufferDatosLaterales, material);
+	cubeMesh->addBuffer(bufferDatosLaterales, materialFront);
+
+
+	Material materialTop = Material::Material(Texture::load("../data/top.png"), nullptr);
+	cubeMesh->addBuffer(bufferDatosTapas, materialTop);
 
 	glm::vec3 scaleVector(1.0f, 1.0f, 1.0f);
 	glm::vec3 rotationVector(0.0f, 0.0f, 0.0f);
