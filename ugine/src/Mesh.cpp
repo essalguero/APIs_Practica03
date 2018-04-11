@@ -1,6 +1,7 @@
 #include "Mesh.h"
 #include "State.h"
 
+
 Mesh::Mesh()
 {
 
@@ -11,18 +12,11 @@ Mesh::~Mesh()
 
 }
 
-void Mesh::addBuffer(const std::shared_ptr<Buffer>& buffer, const std::shared_ptr<Shader>& shader)
+void Mesh::addBuffer(const std::shared_ptr<Buffer>& buffer, const Material& material)
 {
 	buffersVector.push_back(buffer);
 
-	if (nullptr != shader)
-	{
-		shadersVector.push_back(shader);
-	}
-	else
-	{
-		shadersVector.push_back(State::defaultShader);
-	}
+	materialsVector.push_back(material);
 }
 
 size_t Mesh::getNumBuffers() const
@@ -54,7 +48,8 @@ void Mesh::draw()
 {
 	for (int i = 0; i < buffersVector.size(); ++i)
 	{
-		shared_ptr<Shader> shader = shadersVector.at(i);
+		//shared_ptr<Shader> shader = shadersVector.at(i);
+		shared_ptr<Shader> shader = materialsVector.at(i).getShader();
 
 		//Activate the shader
 		shader->use();

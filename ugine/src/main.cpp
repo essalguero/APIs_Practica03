@@ -192,9 +192,11 @@ int createModelsInWorld(World & world)
 		return 0;
 	}
 
+	Material material = Material::Material(Texture::load("../data/front.png"), nullptr);
+
 	shared_ptr<Mesh> cubeMesh = make_shared<Mesh>();
 	Model cubeModel(cubeMesh);
-	cubeMesh->addBuffer(bufferDatosLaterales);
+	cubeMesh->addBuffer(bufferDatosLaterales, material);
 
 	glm::vec3 scaleVector(1.0f, 1.0f, 1.0f);
 	glm::vec3 rotationVector(0.0f, 0.0f, 0.0f);
