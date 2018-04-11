@@ -14,7 +14,7 @@ void Camera::prepare()
 
 	//viewMatrix[3] = glm::vec4(-position, 1.0f);
 	viewMatrix = glm::translate(
-		glm::rotate(glm::mat4(), glm::angle(glm::quat(rotation)), -glm::axis(glm::quat(rotation))), 
+		glm::rotate(glm::mat4(), glm::angle(rotationQuat), -glm::axis(rotationQuat)), 
 		-position);
 
 	State::viewMatrix = viewMatrix;
