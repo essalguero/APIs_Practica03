@@ -63,6 +63,8 @@ int createModelsInWorld(World & world)
 	// Crear el Buffer que contiene los datos de un triángulo
 	vector<Vertex> vertices;
 	vector<uint16_t> indices;
+	vector<Vertex> vertices2;
+	vector<uint16_t> indices2;
 
 
 	/*Vertex v1{ glm::vec3(0.0f, 0.5f, 0.0f) };
@@ -142,7 +144,39 @@ int createModelsInWorld(World & world)
 	indices.push_back(12);
 
 	//Insert indexes for the top and bottom sides of the cube
+	Vertex v20{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
+	Vertex v21{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(0, 0) };
+	Vertex v22{ glm::vec3(0.5f, 0.5f, -0.5f), glm::vec2(1, 0) };
+	Vertex v23{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(1, 1) };
 
+	vertices2.push_back(v20);
+	vertices2.push_back(v21);
+	vertices2.push_back(v22);
+	vertices2.push_back(v23);
+
+	indices2.push_back(0);
+	indices2.push_back(1);
+	indices2.push_back(2);
+	indices2.push_back(2);
+	indices2.push_back(3);
+	indices2.push_back(0);
+
+	Vertex v24{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 1) };
+	Vertex v25{ glm::vec3(-0.5f, -0.5f, 0.5f), glm::vec2(0, 0) };
+	Vertex v26{ glm::vec3(0.5f, -0.5f, 0.5f), glm::vec2(1, 0) };
+	Vertex v27{ glm::vec3(0.5f, -0.5f, -0.5f), glm::vec2(1, 1) };
+
+	vertices2.push_back(v24);
+	vertices2.push_back(v25);
+	vertices2.push_back(v26);
+	vertices2.push_back(v27);
+
+	indices2.push_back(4);
+	indices2.push_back(5);
+	indices2.push_back(6);
+	indices2.push_back(6);
+	indices2.push_back(7);
+	indices2.push_back(4);
 
 	shared_ptr<Buffer> bufferDatosLaterales = Buffer::create(vertices, indices);
 	if (strcmp(bufferDatosLaterales->getError(), "") != 0)
@@ -151,7 +185,7 @@ int createModelsInWorld(World & world)
 		return 0;
 	}
 
-	shared_ptr<Buffer> bufferDatosTapas = Buffer::create(, );
+	shared_ptr<Buffer> bufferDatosTapas = Buffer::create(vertices2, indices2);
 	if (strcmp(bufferDatosLaterales->getError(), "") != 0)
 	{
 		cout << bufferDatosLaterales->getError() << endl;
