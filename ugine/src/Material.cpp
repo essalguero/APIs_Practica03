@@ -41,5 +41,6 @@ void Material::setTexture(const std::shared_ptr<Texture>& tex)
 
 void Material::prepare()
 { 
-
+	if (true)
+		true;
 }
