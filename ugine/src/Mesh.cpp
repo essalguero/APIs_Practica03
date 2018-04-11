@@ -65,7 +65,9 @@ void Mesh::draw()
 		//Activate the shader
 		shader->use();
 
-		// Get location of the mvpMatrix inside the shader
+		materialsVector.at(i).prepare();
+
+		/*// Get location of the mvpMatrix inside the shader
 		int matrixLocation = shader->getLocation("mvpMatrix");
 
 		// Calculate the mvpMatrix
@@ -74,9 +76,10 @@ void Mesh::draw()
 
 		// Pass the MVP matrix to the shader program
 		shader->setMatrix(matrixLocation, mvpMatrix);
-
+		*/
 		// Draw the buffer using the shader
 		buffersVector.at(i)->draw(shader);
+		
 
 		
 	}
