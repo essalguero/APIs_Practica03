@@ -1,5 +1,6 @@
-attribute vec3 vpos;
 //varying vec3 fcolor;
+
+attribute vec3 vpos;
 
 uniform mat4 mvpMatrix;
 
