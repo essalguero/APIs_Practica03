@@ -71,10 +71,11 @@ int createModelsInWorld(World & world)
 	Vertex v2{ glm::vec3(-0.5f, -0.5f, 0.0f) };
 	Vertex v3{ glm::vec3(0.5f, -0.5f, 0.0f) };*/
 
-	Vertex v0{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(0, 1) };
-	Vertex v1{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 0) };
-	Vertex v2{ glm::vec3(0.5f, -0.5f, -0.5f), glm::vec2(1, 0) };
-	Vertex v3{ glm::vec3(0.5f, 0.5f, -0.5f), glm::vec2(1, 1) };
+
+	Vertex v0{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 0) };
+	Vertex v1{ glm::vec3(0.5f, -0.5f, -0.5f), glm::vec2(1, 0) };
+	Vertex v2{ glm::vec3(0.5f, 0.5f, -0.5f), glm::vec2(1, 1) };
+	Vertex v3{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(0, 1) };
 
 	vertices.push_back(v0);
 	vertices.push_back(v1);
@@ -89,10 +90,11 @@ int createModelsInWorld(World & world)
 	indices.push_back(0);
 
 
-	Vertex v4{ glm::vec3(0.5f, 0.5f, -0.5f), glm::vec2(0, 1) };
-	Vertex v5{ glm::vec3(0.5f, -0.5f, -0.5f),  glm::vec2(1, 1) };
-	Vertex v6{ glm::vec3(0.5f, -0.5f, 0.5f), glm::vec2(0, 0) };
-	Vertex v7{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(1, 0) };
+
+	Vertex v4{ glm::vec3(0.5f, -0.5f, -0.5f),  glm::vec2(0, 0) };
+	Vertex v5{ glm::vec3(0.5f, -0.5f, 0.5f), glm::vec2(1, 0) };
+	Vertex v6{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(1, 1) };
+	Vertex v7{ glm::vec3(0.5f, 0.5f, -0.5f), glm::vec2(0, 1) };
 
 	vertices.push_back(v4);
 	vertices.push_back(v5);
@@ -108,10 +110,10 @@ int createModelsInWorld(World & world)
 	indices.push_back(4);
 
 
-	Vertex v8{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
-	Vertex v9{ glm::vec3(0.5f, -0.5f, 0.5f),  glm::vec2(1, 1) };
-	Vertex v10{ glm::vec3(-0.5f, -0.5f, 0.5f), glm::vec2(0, 0) };
-	Vertex v11{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(1, 0) };
+	Vertex v8{ glm::vec3(0.5f, -0.5f, 0.5f),  glm::vec2(0, 0) };
+	Vertex v9{ glm::vec3(-0.5f, -0.5f, 0.5f), glm::vec2(1, 0) };
+	Vertex v10{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(1, 1) };
+	Vertex v11{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
 
 	vertices.push_back(v8);
 	vertices.push_back(v9);
@@ -126,10 +128,11 @@ int createModelsInWorld(World & world)
 	indices.push_back(8);
 
 
-	Vertex v12{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
-	Vertex v13{ glm::vec3(-0.5f, -0.5f, 0.5f),  glm::vec2(1, 1) };
-	Vertex v14{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 0) };
-	Vertex v15{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(1, 0) };
+	
+	Vertex v12{ glm::vec3(-0.5f, -0.5f, 0.5f),  glm::vec2(0, 0) };
+	Vertex v13{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(1, 0) };
+	Vertex v14{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(1, 1) };
+	Vertex v15{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
 
 	vertices.push_back(v12);
 	vertices.push_back(v13);
@@ -144,10 +147,10 @@ int createModelsInWorld(World & world)
 	indices.push_back(12);
 
 	//Insert indexes for the top and bottom sides of the cube
-	Vertex v20{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
-	Vertex v21{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(0, 0) };
-	Vertex v22{ glm::vec3(0.5f, 0.5f, -0.5f), glm::vec2(1, 0) };
-	Vertex v23{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(1, 1) };
+	Vertex v20{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(0, 0) };
+	Vertex v21{ glm::vec3(0.5f, 0.5f, -0.5f), glm::vec2(1, 0) };
+	Vertex v22{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(1, 1) };
+	Vertex v23{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
 
 	vertices2.push_back(v20);
 	vertices2.push_back(v21);
@@ -161,10 +164,10 @@ int createModelsInWorld(World & world)
 	indices2.push_back(3);
 	indices2.push_back(0);
 
-	Vertex v24{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 1) };
-	Vertex v25{ glm::vec3(-0.5f, -0.5f, 0.5f), glm::vec2(0, 0) };
-	Vertex v26{ glm::vec3(0.5f, -0.5f, 0.5f), glm::vec2(1, 0) };
-	Vertex v27{ glm::vec3(0.5f, -0.5f, -0.5f), glm::vec2(1, 1) };
+	Vertex v24{ glm::vec3(-0.5f, -0.5f, 0.5f), glm::vec2(0, 0) };
+	Vertex v25{ glm::vec3(0.5f, -0.5f, 0.5f), glm::vec2(1, 0) };
+	Vertex v26{ glm::vec3(0.5f, -0.5f, -0.5f), glm::vec2(1, 1) };
+	Vertex v27{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 1) };
 
 	vertices2.push_back(v24);
 	vertices2.push_back(v25);

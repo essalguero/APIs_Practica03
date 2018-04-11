@@ -50,14 +50,14 @@ void Material::prepare()
 	shader->setMatrix(shader->getLocation("mvpMatrix"), mvpMatrix);
 	// Set other variables
 
-	int hasTextureLoc = getShader()->getLocation("hasTexture");
+	int isTexturizedLoc = getShader()->getLocation("isTexturized");
 	int textureLoc = getShader()->getLocation("texSampler");
-	if (hasTextureLoc != -1)
+	if (isTexturizedLoc != -1)
 	{
 		if (materialTexture)
 		{
 			
-			shader->setInt(hasTextureLoc, 1);
+			shader->setInt(isTexturizedLoc, 1);
 
 			shader->setInt(textureLoc, 0);
 
@@ -65,7 +65,7 @@ void Material::prepare()
 		}
 		else
 		{
-			shader->setInt(hasTextureLoc, 0);
+			shader->setInt(isTexturizedLoc, 0);
 		}
 	}
 }

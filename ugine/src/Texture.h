@@ -19,7 +19,7 @@ public:
 	void							bind() const;
 
 protected:
-	Texture();
+	Texture(GLuint textureId, int height, int width);
 	~Texture() {};
 	static void destroy(Texture* p) {
 		delete p;

@@ -9,6 +9,7 @@ std::shared_ptr<Texture> Texture::load(const char* filename)
 
 	int imageHeight;
 	int imageWidth;
+	GLuint textureId;
 	
 	stbi_uc* stbiImageLoaded = stbi_load(filename, &imageHeight, &imageWidth, nullptr, 4);
 
@@ -17,32 +18,35 @@ std::shared_ptr<Texture> Texture::load(const char* filename)
 	if (!stbiImageLoaded)
 		return nullptr;
 
+	glGenTextures(1, &textureId);
+
+	glBindTexture(GL_TEXTURE_2D, textureId);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
+		imageWidth, imageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, stbiImageLoaded);
+
+	glGenerateMipmap(GL_TEXTURE_2D);
 	
 
-	std::shared_ptr<Texture> texture(new Texture(), destroy);
+	std::shared_ptr<Texture> texture(new Texture(textureId,imageHeight, imageWidth), destroy);
 	//if (strcmp(p->error, "") != 0) {
 	//texture = nullptr;
+
 
 	stbi_image_free(stbiImageLoaded);
 
 	return texture;
 }
 
-Texture::Texture()
+Texture::Texture(GLuint textureId, int height, int width) : textureId(textureId), imageHeight(height), imageWidth(width)
 {
-	glGenTextures(1, &textureId);
 
-	bind();
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_LINEAR);
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
-		imageWidth, imageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
-
-	glGenerateMipmap(GL_TEXTURE_2D);
+	
 
 	
 }
