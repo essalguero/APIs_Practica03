@@ -1,6 +1,8 @@
 #pragma once
 
 #include "common.h"
+
+#include "Material.h"
 #include "Buffer.h"
 
 #include <vector>
@@ -12,13 +14,16 @@ public:
 	Mesh();
 	~Mesh();
 
-	void addBuffer(const std::shared_ptr<Buffer>& buffer, const std::shared_ptr<Shader>& shader = nullptr);
+	void addBuffer(const std::shared_ptr<Buffer>& buffer, const Material& material);
 	size_t getNumBuffers() const;
 	const std::shared_ptr<Buffer>& getBuffer(size_t index) const;
 	std::shared_ptr<Buffer>& getBuffer(size_t index);
 	void draw();
 
+	const Material& getMaterial(size_t index) const;
+	Material& getMaterial(size_t index);
+
 private:
 	std::vector<shared_ptr<Buffer>> buffersVector;
-	std::vector<shared_ptr<Shader>> shadersVector;
+	std::vector<Material> materialsVector;
 };

@@ -2,10 +2,6 @@
 #pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 #endif
 
-#ifndef STB_IMAGE_IMPLEMENTATION
-#define STB_IMAGE_IMPLEMENTATION
-#endif // !STB_IMAGE_IMPLEMENTATION
-
 
 #include <fstream>
 #include <iostream>
@@ -27,15 +23,15 @@
 #include "Model.h"
 #include "Camera.h"
 #include "World.h"
+#include "Texture.h"
 
 #include "State.h"
-#include "../lib/stb-image/stb_image.h"
 
 
 #define FULLSCREEN false
 
-const float ROTATION_SPEED = 32.0f;
-const float ROTATION_SPEED_RADS = glm::radians(ROTATION_SPEED);
+const float ROTATION_SPEED = 64.0f;
+//const float ROTATION_SPEED_RADS = glm::radians(ROTATION_SPEED);
 
 std::string readString(const char* filename) {
 	std::ifstream f(filename, std::ios_base::binary);
@@ -67,12 +63,21 @@ int createModelsInWorld(World & world)
 	// Crear el Buffer que contiene los datos de un triángulo
 	vector<Vertex> vertices;
 	vector<uint16_t> indices;
+	vector<Vertex> vertices2;
+	vector<uint16_t> indices2;
 
 
-	Vertex v1{ glm::vec3(0.0f, 1.0f, 0.0f) };
-	Vertex v2{ glm::vec3(-1.0f, -1.0f, 0.0f) };
-	Vertex v3{ glm::vec3(1.0f, -1.0f, 0.0f) };
+	/*Vertex v1{ glm::vec3(0.0f, 0.5f, 0.0f) };
+	Vertex v2{ glm::vec3(-0.5f, -0.5f, 0.0f) };
+	Vertex v3{ glm::vec3(0.5f, -0.5f, 0.0f) };*/
 
+
+	Vertex v0{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 0) };
+	Vertex v1{ glm::vec3(0.5f, -0.5f, -0.5f), glm::vec2(1, 0) };
+	Vertex v2{ glm::vec3(0.5f, 0.5f, -0.5f), glm::vec2(1, 1) };
+	Vertex v3{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(0, 1) };
+
+	vertices.push_back(v0);
 	vertices.push_back(v1);
 	vertices.push_back(v2);
 	vertices.push_back(v3);
@@ -80,42 +85,148 @@ int createModelsInWorld(World & world)
 	indices.push_back(0);
 	indices.push_back(1);
 	indices.push_back(2);
+	indices.push_back(2);
+	indices.push_back(3);
+	indices.push_back(0);
 
 
-	shared_ptr<Buffer> bufferDatos = Buffer::create(vertices, indices);
-	if (strcmp(bufferDatos->getError(), "") != 0)
+
+	Vertex v4{ glm::vec3(0.5f, -0.5f, -0.5f),  glm::vec2(0, 0) };
+	Vertex v5{ glm::vec3(0.5f, -0.5f, 0.5f), glm::vec2(1, 0) };
+	Vertex v6{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(1, 1) };
+	Vertex v7{ glm::vec3(0.5f, 0.5f, -0.5f), glm::vec2(0, 1) };
+
+	vertices.push_back(v4);
+	vertices.push_back(v5);
+	vertices.push_back(v6);
+	vertices.push_back(v7);
+
+
+	indices.push_back(4);
+	indices.push_back(5);
+	indices.push_back(6);
+	indices.push_back(6);
+	indices.push_back(7);
+	indices.push_back(4);
+
+
+	Vertex v8{ glm::vec3(0.5f, -0.5f, 0.5f),  glm::vec2(0, 0) };
+	Vertex v9{ glm::vec3(-0.5f, -0.5f, 0.5f), glm::vec2(1, 0) };
+	Vertex v10{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(1, 1) };
+	Vertex v11{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
+
+	vertices.push_back(v8);
+	vertices.push_back(v9);
+	vertices.push_back(v10);
+	vertices.push_back(v11);
+
+	indices.push_back(8);
+	indices.push_back(9);
+	indices.push_back(10);
+	indices.push_back(10);
+	indices.push_back(11);
+	indices.push_back(8);
+
+
+	
+	Vertex v12{ glm::vec3(-0.5f, -0.5f, 0.5f),  glm::vec2(0, 0) };
+	Vertex v13{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(1, 0) };
+	Vertex v14{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(1, 1) };
+	Vertex v15{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
+
+	vertices.push_back(v12);
+	vertices.push_back(v13);
+	vertices.push_back(v14);
+	vertices.push_back(v15);
+
+	indices.push_back(12);
+	indices.push_back(13);
+	indices.push_back(14);
+	indices.push_back(14);
+	indices.push_back(15);
+	indices.push_back(12);
+
+	//Insert indexes for the top and bottom sides of the cube
+	Vertex v20{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(0, 0) };
+	Vertex v21{ glm::vec3(0.5f, 0.5f, -0.5f), glm::vec2(1, 0) };
+	Vertex v22{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(1, 1) };
+	Vertex v23{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
+
+	vertices2.push_back(v20);
+	vertices2.push_back(v21);
+	vertices2.push_back(v22);
+	vertices2.push_back(v23);
+
+	indices2.push_back(0);
+	indices2.push_back(1);
+	indices2.push_back(2);
+	indices2.push_back(2);
+	indices2.push_back(3);
+	indices2.push_back(0);
+
+	Vertex v24{ glm::vec3(-0.5f, -0.5f, 0.5f), glm::vec2(0, 0) };
+	Vertex v25{ glm::vec3(0.5f, -0.5f, 0.5f), glm::vec2(1, 0) };
+	Vertex v26{ glm::vec3(0.5f, -0.5f, -0.5f), glm::vec2(1, 1) };
+	Vertex v27{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 1) };
+
+	vertices2.push_back(v24);
+	vertices2.push_back(v25);
+	vertices2.push_back(v26);
+	vertices2.push_back(v27);
+
+	indices2.push_back(4);
+	indices2.push_back(5);
+	indices2.push_back(6);
+	indices2.push_back(6);
+	indices2.push_back(7);
+	indices2.push_back(4);
+
+	shared_ptr<Buffer> bufferDatosLaterales = Buffer::create(vertices, indices);
+	if (strcmp(bufferDatosLaterales->getError(), "") != 0)
 	{
-		cout << bufferDatos->getError() << endl;
+		cout << bufferDatosLaterales->getError() << endl;
 		return 0;
 	}
 
-	shared_ptr<Mesh> triangleMesh = make_shared<Mesh>();
-	Model triangleModel(triangleMesh);
-	triangleMesh->addBuffer(bufferDatos);
+	shared_ptr<Buffer> bufferDatosTapas = Buffer::create(vertices2, indices2);
+	if (strcmp(bufferDatosTapas->getError(), "") != 0)
+	{
+		cout << bufferDatosTapas->getError() << endl;
+		return 0;
+	}
+
+	Material materialFront = Material::Material(Texture::load("../data/front.png"), nullptr);
+
+	shared_ptr<Mesh> cubeMesh = make_shared<Mesh>();
+	Model cubeModel(cubeMesh);
+	cubeMesh->addBuffer(bufferDatosLaterales, materialFront);
+
+
+	Material materialTop = Material::Material(Texture::load("../data/top.png"), nullptr);
+	cubeMesh->addBuffer(bufferDatosTapas, materialTop);
 
 	glm::vec3 scaleVector(1.0f, 1.0f, 1.0f);
 	glm::vec3 rotationVector(0.0f, 0.0f, 0.0f);
 
 	// Load textures
-	int imageHeight;
-	int imageWidth;
-	stbi_uc* stbiImageLoaded = stbi_load("../data/front.png", &imageHeight, &imageWidth, nullptr, 4);
-	
-	stbi_image_free(stbiImageLoaded);
+
+
+
+
 
 	// create the triangles in the scene
-	for (int x = -3; x <= 3; x += 3) {
-		for (int z = 0; z >= -6; z -= 3) {
+	//for (int x = -3; x <= 3; x += 3) {
+	//	for (int z = 0; z >= -6; z -= 3) {
 
-			shared_ptr<Model> triangle = make_shared<Model>(triangleMesh);
-			triangle->setScale(scaleVector);
-			triangle->setRotation(rotationVector);
-			triangle->setPosition(glm::vec3(static_cast<float>(x), 0.0f, static_cast<float>(z)));
+			shared_ptr<Model> cube = make_shared<Model>(cubeMesh);
+			cube->setScale(scaleVector);
+			cube->setRotation(rotationVector);
+			cube->setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 
 			//Add them to the world object
-			world.addEntity(triangle);
-		}
-	}
+			world.addEntity(cube);
+	//	}
+	//}
 
 	return 1;
 }
@@ -158,8 +269,11 @@ int main(int, char**) {
 
 	// Generate a camera and store it in the world
 	shared_ptr<Camera> camera = make_shared<Camera>();
-	camera->setPosition(glm::vec3(0.0f, 0.0f, 6.0f));
+	camera->setPosition(glm::vec3(0.0f, 1.0f, 3.0f));
 	camera->setClearColor(glm::vec3(0, 0, 0));
+	glm::vec3 cameraRotation = camera->getRotation();
+	cameraRotation.x = -20.0f;
+	camera->setRotation(cameraRotation);
 	world.addEntity(camera);
 
 	// Generate the objects in the world
@@ -170,7 +284,7 @@ int main(int, char**) {
 	}
 
 	// create a cuaternion with the  
-	glm::quat rotationQuat = angleAxis(ROTATION_SPEED_RADS,
+	glm::quat rotationQuat = angleAxis(ROTATION_SPEED,
 		glm::vec3(0.0f, 1.0f, 0.0f));
 
 	// Bucle principal
@@ -212,7 +326,7 @@ int main(int, char**) {
 				glm::quat rotationQuaternion = currentModel->getRotationQuat();
 
 				// Calculate the new quaternion
-				currentModel->setRotation(glm::slerp(rotationQuaternion, 
+				currentModel->setRotationQuat(glm::slerp(rotationQuaternion, 
 					rotationQuat * rotationQuaternion, deltaTime));
 				
 			}
