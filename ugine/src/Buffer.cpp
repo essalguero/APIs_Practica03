@@ -24,5 +24,5 @@ void Buffer::draw(const std::shared_ptr<Shader> & shader) const {
 	shader->setupAttribs();
 
 	// draw triangle
-	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_SHORT, nullptr);
+	glDrawElements(GL_TRIANGLES, static_cast<GLuint>(indices.size()), GL_UNSIGNED_SHORT, nullptr);
 }
