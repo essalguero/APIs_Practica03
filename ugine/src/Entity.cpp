@@ -2,10 +2,6 @@
 
 #include "iostream"
 
-Entity::Entity()
-{
-
-}
 
 const glm::vec3& Entity::getPosition() const
 {

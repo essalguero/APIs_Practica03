@@ -1,10 +1,6 @@
 #include "Camera.h"
 #include "State.h"
 
-Camera::Camera()
-{
-
-}
 
 void Camera::prepare()
 {

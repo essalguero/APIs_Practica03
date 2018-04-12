@@ -6,7 +6,7 @@ class Entity
 {
 public:
 
-	Entity();
+	Entity() : scale(glm::vec3(1, 1, 1)) {}
 	
 	inline const glm::vec3& getPosition() const;
 	void setPosition(const glm::vec3& pos);

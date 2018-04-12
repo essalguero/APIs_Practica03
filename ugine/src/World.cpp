@@ -45,22 +45,26 @@ void World::removeEntity(const std::shared_ptr<Entity>& entity)
 
 	// Delete the element if it was found
 	if (entityToDelete != entitiesVector.end())
+	{
 		entitiesVector.erase(entityToDelete);
 
-	// If it is a Camera, also delete it from the camerasVector
-	std::shared_ptr<Camera> camera = nullptr;
+		// If it is a Camera, also delete it from the camerasVector
+		std::shared_ptr<Camera> camera = nullptr;
 
-	camera = std::dynamic_pointer_cast<Camera>(entity);
-	
-	// Iterator to keep the position to delete
-	std::vector<std::shared_ptr<Camera>>::iterator cameraToDelete;
-	
-	// Search the camera in the vector
-	cameraToDelete = std::find(camerasVector.begin(), camerasVector.end(), entity);
+		camera = std::dynamic_pointer_cast<Camera>(entity);
 
-	// Delete the element if it was found
-	if (cameraToDelete != camerasVector.end())
-		camerasVector.erase(cameraToDelete);
+		if (camera)
+		{
+			// Iterator to keep the position to delete
+			std::vector<std::shared_ptr<Camera>>::iterator cameraToDelete;
+
+			// Search the camera in the vector
+			cameraToDelete = std::find(camerasVector.begin(), camerasVector.end(), entity);
+
+			// Delete the element (If it is a camera, it must be also contained in the vector as it is in the entitiesVector)
+			camerasVector.erase(cameraToDelete);
+		}
+	}
 }
 
 
