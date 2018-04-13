@@ -60,16 +60,15 @@ int init() {
 // This method creates all the models and add them to the world
 int createModelsInWorld(World & world)
 {
-	// Crear el Buffer que contiene los datos de un triángulo
-	vector<Vertex> vertices;
-	vector<uint16_t> indices;
-	vector<Vertex> vertices2;
-	vector<uint16_t> indices2;
+	// Crear los Buffers que contiene los datos del cubo. El cubo lo forman dos buffers distintos (se usan una textura distinta en cada Buffer)
+	// 1.- Caras laterales
+	// 2.- Caras superior e inferion
+	vector<Vertex> verticesLaterales;
+	vector<uint16_t> indicesLaterales;
+	vector<Vertex> verticesTapas;
+	vector<uint16_t> indicesTapas;
 
 
-	/*Vertex v1{ glm::vec3(0.0f, 0.5f, 0.0f) };
-	Vertex v2{ glm::vec3(-0.5f, -0.5f, 0.0f) };
-	Vertex v3{ glm::vec3(0.5f, -0.5f, 0.0f) };*/
 
 
 	Vertex v0{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 0) };
@@ -77,17 +76,17 @@ int createModelsInWorld(World & world)
 	Vertex v2{ glm::vec3(0.5f, 0.5f, -0.5f), glm::vec2(1, 1) };
 	Vertex v3{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(0, 1) };
 
-	vertices.push_back(v0);
-	vertices.push_back(v1);
-	vertices.push_back(v2);
-	vertices.push_back(v3);
+	verticesLaterales.push_back(v0);
+	verticesLaterales.push_back(v1);
+	verticesLaterales.push_back(v2);
+	verticesLaterales.push_back(v3);
 
-	indices.push_back(0);
-	indices.push_back(1);
-	indices.push_back(2);
-	indices.push_back(2);
-	indices.push_back(3);
-	indices.push_back(0);
+	indicesLaterales.push_back(0);
+	indicesLaterales.push_back(1);
+	indicesLaterales.push_back(2);
+	indicesLaterales.push_back(2);
+	indicesLaterales.push_back(3);
+	indicesLaterales.push_back(0);
 
 
 
@@ -96,18 +95,18 @@ int createModelsInWorld(World & world)
 	Vertex v6{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(1, 1) };
 	Vertex v7{ glm::vec3(0.5f, 0.5f, -0.5f), glm::vec2(0, 1) };
 
-	vertices.push_back(v4);
-	vertices.push_back(v5);
-	vertices.push_back(v6);
-	vertices.push_back(v7);
+	verticesLaterales.push_back(v4);
+	verticesLaterales.push_back(v5);
+	verticesLaterales.push_back(v6);
+	verticesLaterales.push_back(v7);
 
 
-	indices.push_back(4);
-	indices.push_back(5);
-	indices.push_back(6);
-	indices.push_back(6);
-	indices.push_back(7);
-	indices.push_back(4);
+	indicesLaterales.push_back(4);
+	indicesLaterales.push_back(5);
+	indicesLaterales.push_back(6);
+	indicesLaterales.push_back(6);
+	indicesLaterales.push_back(7);
+	indicesLaterales.push_back(4);
 
 
 	Vertex v8{ glm::vec3(0.5f, -0.5f, 0.5f),  glm::vec2(0, 0) };
@@ -115,17 +114,17 @@ int createModelsInWorld(World & world)
 	Vertex v10{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(1, 1) };
 	Vertex v11{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
 
-	vertices.push_back(v8);
-	vertices.push_back(v9);
-	vertices.push_back(v10);
-	vertices.push_back(v11);
+	verticesLaterales.push_back(v8);
+	verticesLaterales.push_back(v9);
+	verticesLaterales.push_back(v10);
+	verticesLaterales.push_back(v11);
 
-	indices.push_back(8);
-	indices.push_back(9);
-	indices.push_back(10);
-	indices.push_back(10);
-	indices.push_back(11);
-	indices.push_back(8);
+	indicesLaterales.push_back(8);
+	indicesLaterales.push_back(9);
+	indicesLaterales.push_back(10);
+	indicesLaterales.push_back(10);
+	indicesLaterales.push_back(11);
+	indicesLaterales.push_back(8);
 
 
 	
@@ -134,17 +133,17 @@ int createModelsInWorld(World & world)
 	Vertex v14{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(1, 1) };
 	Vertex v15{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
 
-	vertices.push_back(v12);
-	vertices.push_back(v13);
-	vertices.push_back(v14);
-	vertices.push_back(v15);
+	verticesLaterales.push_back(v12);
+	verticesLaterales.push_back(v13);
+	verticesLaterales.push_back(v14);
+	verticesLaterales.push_back(v15);
 
-	indices.push_back(12);
-	indices.push_back(13);
-	indices.push_back(14);
-	indices.push_back(14);
-	indices.push_back(15);
-	indices.push_back(12);
+	indicesLaterales.push_back(12);
+	indicesLaterales.push_back(13);
+	indicesLaterales.push_back(14);
+	indicesLaterales.push_back(14);
+	indicesLaterales.push_back(15);
+	indicesLaterales.push_back(12);
 
 	//Insert indexes for the top and bottom sides of the cube
 	Vertex v20{ glm::vec3(-0.5f, 0.5f, -0.5f), glm::vec2(0, 0) };
@@ -152,81 +151,77 @@ int createModelsInWorld(World & world)
 	Vertex v22{ glm::vec3(0.5f, 0.5f, 0.5f), glm::vec2(1, 1) };
 	Vertex v23{ glm::vec3(-0.5f, 0.5f, 0.5f), glm::vec2(0, 1) };
 
-	vertices2.push_back(v20);
-	vertices2.push_back(v21);
-	vertices2.push_back(v22);
-	vertices2.push_back(v23);
+	verticesTapas.push_back(v20);
+	verticesTapas.push_back(v21);
+	verticesTapas.push_back(v22);
+	verticesTapas.push_back(v23);
 
-	indices2.push_back(0);
-	indices2.push_back(1);
-	indices2.push_back(2);
-	indices2.push_back(2);
-	indices2.push_back(3);
-	indices2.push_back(0);
+	indicesTapas.push_back(0);
+	indicesTapas.push_back(1);
+	indicesTapas.push_back(2);
+	indicesTapas.push_back(2);
+	indicesTapas.push_back(3);
+	indicesTapas.push_back(0);
 
 	Vertex v24{ glm::vec3(-0.5f, -0.5f, 0.5f), glm::vec2(0, 0) };
 	Vertex v25{ glm::vec3(0.5f, -0.5f, 0.5f), glm::vec2(1, 0) };
 	Vertex v26{ glm::vec3(0.5f, -0.5f, -0.5f), glm::vec2(1, 1) };
 	Vertex v27{ glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec2(0, 1) };
 
-	vertices2.push_back(v24);
-	vertices2.push_back(v25);
-	vertices2.push_back(v26);
-	vertices2.push_back(v27);
+	verticesTapas.push_back(v24);
+	verticesTapas.push_back(v25);
+	verticesTapas.push_back(v26);
+	verticesTapas.push_back(v27);
 
-	indices2.push_back(4);
-	indices2.push_back(5);
-	indices2.push_back(6);
-	indices2.push_back(6);
-	indices2.push_back(7);
-	indices2.push_back(4);
+	indicesTapas.push_back(4);
+	indicesTapas.push_back(5);
+	indicesTapas.push_back(6);
+	indicesTapas.push_back(6);
+	indicesTapas.push_back(7);
+	indicesTapas.push_back(4);
 
-	shared_ptr<Buffer> bufferDatosLaterales = Buffer::create(vertices, indices);
+	// Creacion de los Buffers
+	shared_ptr<Buffer> bufferDatosLaterales = Buffer::create(verticesLaterales, indicesLaterales);
 	if (strcmp(bufferDatosLaterales->getError(), "") != 0)
 	{
 		cout << bufferDatosLaterales->getError() << endl;
 		return 0;
 	}
 
-	shared_ptr<Buffer> bufferDatosTapas = Buffer::create(vertices2, indices2);
+	shared_ptr<Buffer> bufferDatosTapas = Buffer::create(verticesTapas, indicesTapas);
 	if (strcmp(bufferDatosTapas->getError(), "") != 0)
 	{
 		cout << bufferDatosTapas->getError() << endl;
 		return 0;
 	}
 
+	// Carga Material para caras laterales
 	Material materialFront = Material::Material(Texture::load("../data/front.png"), nullptr);
-
-	shared_ptr<Mesh> cubeMesh = make_shared<Mesh>();
-	Model cubeModel(cubeMesh);
-	cubeMesh->addBuffer(bufferDatosLaterales, materialFront);
-
-
+	// Carga Material para caras Superior e Inferior
 	Material materialTop = Material::Material(Texture::load("../data/top.png"), nullptr);
+
+	// Crear un Mesh para el cubo
+	shared_ptr<Mesh> cubeMesh = make_shared<Mesh>();
+
+	// Crear un Model para el cubo
+	shared_ptr<Model> cube = make_shared<Model>(cubeMesh);
+
+	// Añadir el Buffer que contiene los datos de las caras laterales al Mesh del cubo
+	cubeMesh->addBuffer(bufferDatosLaterales, materialFront);
+	// Añadir el Buffer que contiene los datos de las caras laterales al Mesh del cubo
 	cubeMesh->addBuffer(bufferDatosTapas, materialTop);
 
 	glm::vec3 scaleVector(1.0f, 1.0f, 1.0f);
 	glm::vec3 rotationVector(0.0f, 0.0f, 0.0f);
 
-	// Load textures
 
+	cube->setScale(scaleVector);
+	cube->setRotation(rotationVector);
+	cube->setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 
+	//Add the cube to the world object
+	world.addEntity(cube);
 
-
-
-	// create the triangles in the scene
-	//for (int x = -3; x <= 3; x += 3) {
-	//	for (int z = 0; z >= -6; z -= 3) {
-
-			shared_ptr<Model> cube = make_shared<Model>(cubeMesh);
-			cube->setScale(scaleVector);
-			cube->setRotation(rotationVector);
-			cube->setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
-
-			//Add them to the world object
-			world.addEntity(cube);
-	//	}
-	//}
 
 	return 1;
 }
