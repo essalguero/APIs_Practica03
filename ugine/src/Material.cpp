@@ -48,10 +48,12 @@ void Material::prepare()
 	glm::mat4 mvpMatrix = State::projectionMatrix * State::viewMatrix * State::modelMatrix;
 
 	shader->setMatrix(shader->getLocation("mvpMatrix"), mvpMatrix);
+	
 	// Set other variables
-
 	int isTexturizedLoc = getShader()->getLocation("isTexturized");
 	int textureLoc = getShader()->getLocation("texSampler");
+
+	// Check if there is a texture to be used
 	if (isTexturizedLoc != -1)
 	{
 		if (materialTexture)

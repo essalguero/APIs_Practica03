@@ -59,24 +59,14 @@ void Mesh::draw()
 {
 	for (int i = 0; i < buffersVector.size(); ++i)
 	{
-		//shared_ptr<Shader> shader = shadersVector.at(i);
 		shared_ptr<Shader> shader = materialsVector.at(i).getShader();
 
 		//Activate the shader
 		shader->use();
 
+		// Call the material prepare
 		materialsVector.at(i).prepare();
 
-		/*// Get location of the mvpMatrix inside the shader
-		int matrixLocation = shader->getLocation("mvpMatrix");
-
-		// Calculate the mvpMatrix
-		glm::mat4 mvMatrix = State::viewMatrix * State::modelMatrix;
-		glm::mat4 mvpMatrix = State::projectionMatrix * mvMatrix;
-
-		// Pass the MVP matrix to the shader program
-		shader->setMatrix(matrixLocation, mvpMatrix);
-		*/
 		// Draw the buffer using the shader
 		buffersVector.at(i)->draw(shader);
 		

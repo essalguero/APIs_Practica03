@@ -13,8 +13,6 @@ std::shared_ptr<Texture> Texture::load(const char* filename)
 	
 	stbi_uc* stbiImageLoaded = stbi_load(filename, &imageHeight, &imageWidth, nullptr, 4);
 
-	//glGenTextures(1, &textureId);
-
 	if (!stbiImageLoaded)
 		return nullptr;
 
@@ -34,9 +32,6 @@ std::shared_ptr<Texture> Texture::load(const char* filename)
 	
 
 	std::shared_ptr<Texture> texture(new Texture(textureId,imageHeight, imageWidth), destroy);
-	//if (strcmp(p->error, "") != 0) {
-	//texture = nullptr;
-
 
 	stbi_image_free(stbiImageLoaded);
 
@@ -46,9 +41,6 @@ std::shared_ptr<Texture> Texture::load(const char* filename)
 Texture::Texture(GLuint textureId, int height, int width) : textureId(textureId), imageHeight(height), imageWidth(width)
 {
 
-	
-
-	
 }
 
 uint32_t Texture::getId() const

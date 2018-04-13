@@ -23,6 +23,6 @@ void Buffer::draw(const std::shared_ptr<Shader> & shader) const {
 
 	shader->setupAttribs();
 
-	// draw triangle
+	// draw the data in the buffer
 	glDrawElements(GL_TRIANGLES, static_cast<GLuint>(indices.size()), GL_UNSIGNED_SHORT, nullptr);
 }
